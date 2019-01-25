@@ -6,12 +6,11 @@
 </head>
 
 <body>
-<div id="demo">
-
-    <h2>The XMLHttpRequest Object</h2>
-
-    <button type="button" onclick="getCountryList('https://restcountries.eu/rest/v2/all')">Get Country information
+<div>
+    <button type="button" onclick="getCountryList('https://restcountries.eu/rest/v2/name/suriname')">Get Country information
     </button>
+    <h2 id="countryName"></h2>
+    <img id="flag" src="" width="100">
 </div>
 
 <script>
@@ -28,8 +27,10 @@
     }
 
     function callbackFunction(xhttp) {
-        document.getElementById("demo").innerHTML =
-            xhttp.responseText;
+        var obj = JSON.parse( xhttp.responseText);
+        document.getElementById("countryName").innerHTML = obj[0].name + ", " + obj[0].alpha2Code;
+        var img = document.getElementById("flag");
+        img.setAttribute("src", obj[0].flag)
     }
 </script>
 </body>
