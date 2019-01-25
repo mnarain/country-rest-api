@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Country Rest Api</title>
+</head>
+
+<body>
+<div id="demo">
+
+    <h2>The XMLHttpRequest Object</h2>
+
+    <button type="button" onclick="getCountryList('https://restcountries.eu/rest/v2/all')">Get Country information
+    </button>
+</div>
+
+<script>
+    function getCountryList(url) {
+        var xhttp;
+        xhttp=new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                callbackFunction(this);
+            }
+    };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+
+    function callbackFunction(xhttp) {
+        document.getElementById("demo").innerHTML =
+            xhttp.responseText;
+    }
+</script>
+</body>
+</html>
